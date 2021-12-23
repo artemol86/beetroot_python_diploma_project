@@ -1,24 +1,24 @@
 # beetroot_python_diploma_project
 Final diploma project for "Python for begginers" course
 
-##Ideas and purposes:
+## Ideas and purposes:
 This Telegram bot might help couples with ideas for cooking. 
 So when you are busy and don't have time to think what exactly you need/want for breakfast/lunch/dinner just start this app.
 
-##How to use app:
+## How to use app:
 Available Buttons: 'Give me idea'; 'Meal menu': 'Add meal', 'Delete meal', 'Edit meal #number', 'help'.
 -Add/delete meal you like most to fulfill your dishes list. 
 -After clicking on 'Give me idea' app will randomly generate idea from your dishes list. If you don't like the idea, click again on 'Give me idea'.
 
 
-##Backend part____(Debian10/Ubuntu20.04 are recommended, you may use any other OS with familiar setup)
+## Backend part____(Debian10/Ubuntu20.04 are recommended, you may use any other OS with familiar setup)
 
-####Python3 installation
+#### Python3 installation
 1.Check python3 is installed
 python3 --version 
 2.If no python3 installed, please install it:
 You can use link how to: https://linuxhint.com/install-python-debian-10/
-####MySQL installation(Debian/Ubuntu OS):
+#### MySQL installation(Debian/Ubuntu OS):
 1.Check you have MySQL installed and it's version:
 mysql -V
 2. If you don't have MySQL, please install it(MySQL 8.0 is recommended):
@@ -27,6 +27,40 @@ You can use link how to: https://linuxize.com/post/how-to-install-mysql-on-debia
 https://www.cyberciti.biz/faq/howto-linux-unix-creating-database-and-table/
 4. Create DB user for your app:
 https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
+
+###### Examples: 
+mysql> CREATE DATABASE Dishes;
+
+mysql> use Dishes;
+Database changed
+mysql> CREATE TABLE Dishes_List
+    -> (
+    -> ID int NOT NULL UNIQUE,
+    -> Name varchar(100) NOT NULL,
+    -> Ingredients varchar(1000) NOT NULL,
+    -> HowToCook varchar(1000) NOT NULL,
+    -> Photo varchar(100) NOT NULL,
+    -> Video varchar(100) NOT NULL
+    -> );
+Query OK, 0 rows affected (0,04 sec)
+
+
+mysql> SHOW COLUMNS FROM Dishes_List;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| ID          | int           | NO   | PRI | NULL    |       |
+| Name        | varchar(100)  | NO   |     | NULL    |       |
+| Ingredients | varchar(1000) | NO   |     | NULL    |       |
+| HowToCook   | varchar(1000) | NO   |     | NULL    |       |
+| Photo       | varchar(100)  | NO   |     | NULL    |       |
+| Video       | varchar(100)  | NO   |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+6 rows in set (0,01 sec)
+
+mysql>
+
+mysql> quit
 
 ####Telegram API installation and bot creation
 https://core.telegram.org/bots 
