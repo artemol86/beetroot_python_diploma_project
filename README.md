@@ -44,43 +44,27 @@ mysql> CREATE TABLE Dishes_List
     -> );
 Query OK, 0 rows affected (0,04 sec)
 
-
-mysql> SHOW COLUMNS FROM Dishes_List;
-+-------------+---------------+------+-----+---------+-------+
-| Field       | Type          | Null | Key | Default | Extra |
-+-------------+---------------+------+-----+---------+-------+
-| ID          | int           | NO   | PRI | NULL    |       |
-| Name        | varchar(100)  | NO   |     | NULL    |       |
-| Ingredients | varchar(1000) | NO   |     | NULL    |       |
-| HowToCook   | varchar(1000) | NO   |     | NULL    |       |
-| Photo       | varchar(100)  | NO   |     | NULL    |       |
-| Video       | varchar(100)  | NO   |     | NULL    |       |
-+-------------+---------------+------+-----+---------+-------+
-6 rows in set (0,01 sec)
-
-mysql>
-
 mysql> quit
 
-####Telegram API installation and bot creation
+#### Telegram API installation and bot creation
 https://core.telegram.org/bots 
 https://github.com/python-telegram-bot/python-telegram-bot#getting-started 
 https://github.com/python-telegram-bot/python-telegram-bot/wiki/Extensions-%E2%80%93-Your-first-Bot 
 https://www.freecodecamp.org/news/learn-to-build-your-first-bot-in-telegram-with-python-4c99526765e4/ 
 
-####Python reguirements installation:
+#### Python reguirements installation:
 git clone git@github.com:artemol86/beetroot_python_diploma_project.git
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r ./requirements.txt
 
 
-####Setup secrets
+#### Setup secrets
 Then update 'setup_keys.ini':
 
 	[MySQL]
-	user_name = your_name
-	user_pass = user_pass
+	db_user_name = your_name
+	db_user_pass = user_pass
 	database = db_name_here
 	
 	[Telegram_bot]
