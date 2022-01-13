@@ -1,4 +1,4 @@
-# beetroot_python_diploma_project
+# Beetroot_python_diploma_project
 Final diploma project for "Python for begginers" course
 
 ## Ideas and purposes:
@@ -11,7 +11,7 @@ Available Buttons: 'Give me idea'; 'Meal menu': 'Add meal', 'Delete meal', 'Edit
 -After clicking on 'Give me idea' app will randomly generate idea from your dishes list. If you don't like the idea, click again on 'Give me idea'.
 
 
-## Backend part____(Debian10/Ubuntu20.04 are recommended, you may use any other OS with familiar setup)
+## Backend part (Debian10/Ubuntu20.04 are recommended, you may use any other OS with familiar setup)
 
 #### Python3 installation
 1.Check python3 is installed
@@ -28,23 +28,26 @@ https://www.cyberciti.biz/faq/howto-linux-unix-creating-database-and-table/
 4. Create DB user for your app:
 https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
 
-###### Examples: 
+###### Examples for MySQL: 
 mysql> CREATE DATABASE Dishes;
 
 mysql> use Dishes;
 Database changed
-mysql> CREATE TABLE Dishes_List
-    -> (
-    -> ID int NOT NULL UNIQUE,
-    -> Name varchar(100) NOT NULL,
-    -> Ingredients varchar(1000) NOT NULL,
-    -> HowToCook varchar(1000) NOT NULL,
-    -> Photo varchar(100) NOT NULL,
-    -> Video varchar(100) NOT NULL
-    -> );
+mysql> CREATE TABLE Dishes_List (ID int AUTO_INCREMENT PRIMARY KEY, Name varchar(100) NOT NULL, Ingredients varchar(1000), HowToCook varchar(1000), Photo varchar(100), Video varchar(100));
 Query OK, 0 rows affected (0,04 sec)
 
-mysql> quit
+mysql> INSERT INTO Dishes_List (Name) VALUES ('Класичний український борщ');
+
+
+mysql> UPDATE Dishes_List SET Ingredients = 'Вода – 1,5-2 л., свинина або яловичина на кістці – 400 г, картопля – 4 шт. (середні), буряк – 2 шт. (невеликі), морква – 1 шт., цибуля – 3 шт. (середні), капуста білокачанна свіжа – 300 г, томатна паста – 2 ст. л., соняшникова олія – 4-5 ст. л., лимонна кислота – дрібка, сіль, лавровий лист, зелень – за смаком' WHERE ID='1' ;
+
+
+mysql> INSERT INTO Dishes_List (Name) VALUES ('Олів`є класичний');
+Query OK, 1 row affected (0,00 sec)
+
+mysql> UPDATE Dishes_List SET Ingredients = 'картопля - 4-5 штук, морква - 2 великі або 3 середні, консервований горошок – 1 банка, ковбаса «Докторська» - 300-400 г, солоні або мариновані огірки – 4-5 штук, яйця – 6 штук, цибуля – 1 штука, зелень, майонез' WHERE ID='2' ;
+
+
 
 #### Telegram API installation and bot creation
 https://core.telegram.org/bots 

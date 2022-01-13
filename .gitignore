@@ -1,2 +1,5 @@
 venv
 setup_keys.ini
+setup_keys.py
+__pycache__
+
