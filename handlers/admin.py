@@ -44,7 +44,7 @@ async def load_name(message : types.Message, state: FSMContext):
 	async with state.proxy() as data:
 		data['name'] = message.text
 	await FSMAdmin.next()
-	await message.reply('Тепер інгрідієнти та сам рецепт, або посилання')
+	await message.reply('Тепер сам рецепт(не більше 200 символів!))')
 
 #Catch 3rd question	
 #@dp.message_handler(state=FSMAdmin.recipe)
@@ -58,11 +58,12 @@ async def load_recipe(message : types.Message, state: FSMContext):
 	await state.finish()
 
 
-#register handlers
+#register handlerss
 def register_handlers_admin(dp: Dispatcher):
 	dp.register_message_handler(cm_start, commands=['add'], state=None)
-	dp.message_handler(cancel_handler, state='*', commands='cancel')
-	dp.message_handler(cancel_handler, Text(equals='cancel', ignore_case=True), state='*')
+	dp.register_message_handler(cm_start, Text(equals='add', ignore_case=True), state=None)
+	dp.register_message_handler(cancel_handler, state='*', commands='cancel')
+	dp.register_message_handler(cancel_handler, Text(equals='cancel', ignore_case=True), state='*')
 	dp.register_message_handler(load_photo, content_types=['photo'], state = FSMAdmin.photo)
 	dp.register_message_handler(load_name, state = FSMAdmin.name)
 	dp.register_message_handler(load_recipe, state = FSMAdmin.recipe)

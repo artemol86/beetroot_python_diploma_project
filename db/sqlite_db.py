@@ -18,4 +18,8 @@ async def sql_add_command(state):
 
 async def sql_read_all(message):
 	for dish in cur.execute('SELECT * FROM dishes_list').fetchall():
-		await bot.send_photo(message.from_user.id, dish[0], f'Страва: {dish[1]}\nРецепт: {dish[2]}')
+		await bot.send_photo(message.from_user.id, dish[0], f'Страва: "{dish[1]}"\nРецепт: {dish[2]}\n\n')
+
+async def sql_random_read(message):
+	for dish in cur.execute('SELECT * FROM dishes_list order by RANDOM() LIMIT 1;').fetchall():
+		await bot.send_photo(message.from_user.id, dish[0], f'Страва: "{dish[1]}"\nРецепт: {dish[2]}\n\n')

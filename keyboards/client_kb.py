@@ -1,5 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton 
-b1 = KeyboardButton('/Що мені приготувати? ')
+b1 = KeyboardButton('/Що_мені_приготувати? ')
 b2 = KeyboardButton('/Показати_всі_страви')
 
 kb_client = ReplyKeyboardMarkup(resize_keyboard=True)

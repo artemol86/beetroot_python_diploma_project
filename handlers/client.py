@@ -16,7 +16,12 @@ async def command_start(message: types.Message):
 #@dp.message_handler(commands=['Показати всі страви'])
 async def dishes_all(message : types.Message):
 	await sqlite_db.sql_read_all(message)
+
+#@dp.message_handler(commands=['Що_мені_приготувати?'])
+async def random_dish(message : types.Message):
+	await sqlite_db.sql_random_read(message)
 	
 def register_handlers_client(dp : Dispatcher):
 	dp.register_message_handler(command_start, commands=['start', 'help'])
 	dp.register_message_handler(dishes_all, commands=['Показати_всі_страви'])
+	dp.register_message_handler(random_dish, commands=['Що_мені_приготувати?'])
