@@ -18,8 +18,15 @@ async def sql_add_command(state):
 
 async def sql_read_all(message):
 	for dish in cur.execute('SELECT * FROM dishes_list').fetchall():
-		await bot.send_photo(message.from_user.id, dish[0], f'Страва: "{dish[1]}"\nРецепт: {dish[2]}\n\n')
+		await bot.send_photo(message.from_user.id, dish[0], f'{dish[1]}\nРецепт:\n {dish[2]}\n\n')
+
+async def sql_read_all_2():
+	return cur.execute('SELECT * FROM dishes_list').fetchall()
 
 async def sql_random_read(message):
 	for dish in cur.execute('SELECT * FROM dishes_list order by RANDOM() LIMIT 1;').fetchall():
-		await bot.send_photo(message.from_user.id, dish[0], f'Страва: "{dish[1]}"\nРецепт: {dish[2]}\n\n')
+		await bot.send_photo(message.from_user.id, dish[0], f'{dish[1]}\nРецепт:\n {dish[2]}\n\n')
+
+async def sql_delete_command(data):
+	cur.execute('DELETE FROM dishes_list WHERE name == ?', (data,))
+	base.commit()
