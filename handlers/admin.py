@@ -15,8 +15,6 @@ class FSMAdmin(StatesGroup):
 	recipe = State()
 	link = State()
 
-#Check if user is Admin
-#@dp.message_handler(commands=['admin'])
 async def make_changes_command(message: types.Message):
 	if message.from_user.id in admins:
 		await bot.send_message(message.from_user.id, 'Ти пройшов перевірку на адміна, \
@@ -26,16 +24,11 @@ async def make_changes_command(message: types.Message):
 		await bot.send_message(message.from_user.id, 'Ти не адмін! Тобі не можна! :-)')
 
 
-#Starting dialog
-#@dp.message_handler(commands='Add', state=None)
 async def cm_start(message : types.Message):
 	if message.from_user.id in admins:
 		await FSMAdmin.photo.set()
 		await message.reply('Додай фото')
 
-#Exit from State(canceling adding)
-#@dp.message_handler(state='*', commands='cancel')
-#@dp.message_handler(Text(equals='cancel', ignore_case=True), state='*')
 async def cancel_handler(message: types.Message, state: FSMContext):
 	if message.from_user.id in admins:
 		current_state = await state.get_state()
@@ -44,8 +37,6 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 		await state.finish()
 		await message.reply('Successfully canceled')
 
-#Catch 1st question and put into dictionary
-#@dp.message_handler(content_types=['photo'], state=FSMAdmin.photo)
 async def load_photo(message : types.Message, state: FSMContext):
 	if message.from_user.id in admins:
 		async with state.proxy() as data:
@@ -53,8 +44,6 @@ async def load_photo(message : types.Message, state: FSMContext):
 		await FSMAdmin.next()
 		await message.reply('Додай назву')
 
-#Catch 2nd question
-#@dp.message_handler(state=FSMAdmin.name)
 async def load_name(message : types.Message, state: FSMContext):
 	if message.from_user.id in admins:
 		async with state.proxy() as data:
@@ -62,8 +51,6 @@ async def load_name(message : types.Message, state: FSMContext):
 		await FSMAdmin.next()
 		await message.reply('Тепер сам рецепт(не більше 200 символів!))')
 
-#Catch 3rd question	
-#@dp.message_handler(state=FSMAdmin.recipe)
 async def load_recipe(message : types.Message, state: FSMContext):
 	if message.from_user.id in admins:
 		async with state.proxy() as data:
@@ -89,7 +76,6 @@ async def del_item(message: types.Message):
 				add(InlineKeyboardButton(f'Видалити {dish[1]}', callback_data=f'del {dish[1]}')))
 
 
-#register handlers
 def register_handlers_admin(dp: Dispatcher):
 	dp.register_message_handler(cm_start, commands=['add'], state=None)
 	dp.register_message_handler(cm_start, Text(equals='add', ignore_case=True), state=None)
