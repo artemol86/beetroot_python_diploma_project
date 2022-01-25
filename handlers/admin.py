@@ -61,9 +61,9 @@ async def load_recipe(message : types.Message, state: FSMContext):
 
 @dp.callback_query_handler(lambda x: x.data and x.data.startswith('del '))
 async def del_callback_run(callback_query: types.CallbackQuery):
-	if message.from_user.id in admins:
-		await sqlite_db.sql_delete_command(callback_query.data.replace('del ', ''))
-		await callback_query.answer(text=f'{callback_query.data.replace("del ", "")} видалено.', show_alert=True)
+#	if message.from_user.id in admins:
+	await sqlite_db.sql_delete_command(callback_query.data.replace('del ', ''))
+	await callback_query.answer(text=f'{callback_query.data.replace("del ", "")} видалено.', show_alert=True)
 
 
 @dp.message_handler(commands='Delete')
